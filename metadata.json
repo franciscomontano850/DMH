@@ -1,0 +1,7 @@
+{
+  "name": "DMH",
+  "description": "A personal productivity hub for Dayana (DMH), combining her passion for music and fitness with an AI-powered HVAC quotation assistant.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
