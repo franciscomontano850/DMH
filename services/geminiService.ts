@@ -3,7 +3,14 @@ import { GoogleGenAI } from "@google/genai";
 import { SearchResult } from "../types";
 
 export const searchHvacQuotes = async (query: string, focusCompany: boolean = true): Promise<SearchResult> => {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+  // Manejo seguro de la API KEY en entorno de navegador
+  const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : '';
+  
+  if (!apiKey) {
+    throw new Error("Clave de API no configurada en Vercel.");
+  }
+
+  const ai = new GoogleGenAI({ apiKey });
   
   const companyContext = focusCompany 
     ? "Context: Searching for solutions compatible with Anthony & Son HVAC (anthonyandsonhac.com). Prioritize brands like Carrier, Trane, Mitsubishi Electric, and Rheem."
